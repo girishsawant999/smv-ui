@@ -49,3 +49,27 @@
   src: url('soehne-mono-web-kraftig-kursiv.woff2') format('woff2'),
     url('soehne-mono-web-kraftig-kursiv.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('Manrope-ExtraLight.ttf');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('Manrope-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('Manrope-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('Manrope-ExtraBold.ttf');
+  font-weight: 800;
+}
