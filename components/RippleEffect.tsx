@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { keyframes, styled } from "../stitches.config";
 
 type C = {
@@ -103,7 +103,7 @@ export const RippleEffect = ({
           <FirstRipple
             id="ripple"
             className={className}
-            variant={variant}
+            variant={variant as any}
             style={{
               left: coords.x,
               top: coords.y,
@@ -114,8 +114,8 @@ export const RippleEffect = ({
             <SecondRipple
               id="ripple"
               className={className}
-              variant={variant}
-              secondaryVariant={secondaryVariant}
+              variant={variant as any}
+              secondaryVariant={secondaryVariant as any}
               style={{
                 left: coords.x,
                 top: coords.y,

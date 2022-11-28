@@ -230,7 +230,7 @@ export default function Closed() {
               <Button>Ok</Button>
             </AlertDialogAction>
             <AlertDialogCancel asChild>
-              <Button variant="red">Cancel</Button>
+              <Button variant="warn">Cancel</Button>
             </AlertDialogCancel>
           </Flex>
         </AlertDialogContent>

@@ -1,6 +1,6 @@
 {
   "name": "@stampmyvisa/design-system",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "files": [
@@ -49,6 +49,7 @@
     "@typescript-eslint/parser": "^5.44.0",
     "enhanced-resolve": "^5.10.0",
     "lodash.merge": "^4.6.2",
+    "postcss": "^8.4.19",
     "webpack": "^5.75.0"
   },
   "devDependencies": {
@@ -83,7 +84,7 @@
     "rollup": "^2.33.1",
     "rollup-plugin-typescript2": "^0.29.0",
     "sb": "^6.5.13",
-    "typescript": "^4.3.5"
+    "typescript": "4.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

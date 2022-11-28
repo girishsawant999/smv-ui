@@ -470,7 +470,7 @@ function Home() {
                   <Text size="2" css={{ color: '$slate11' }}>
                     Forgot password
                   </Text>
-                  <Button size="2" variant="blue">
+                  <Button size="2">
                     Log in
                   </Button>
                 </Flex>
@@ -1218,19 +1218,19 @@ function Home() {
             </Flex>
             <Flex css={{ mt: '$6', gap: '$6' }}>
               <Button>Button</Button>
-              <Button variant="blue">Important</Button>
-              <Button variant="green">Secure</Button>
-              <Button variant="red">Warning</Button>
+              <Button>Important</Button>
+              <Button>Secure</Button>
+              <Button>Warning</Button>
             </Flex>
             <Flex css={{ mt: '$6', gap: '$6' }}>
-              <Button ghost>Button</Button>
-              <Button ghost variant="blue">
+              <Button>Button</Button>
+              <Button>
                 Important
               </Button>
-              <Button ghost variant="green">
+              <Button>
                 Secure
               </Button>
-              <Button ghost variant="red">
+              <Button variant="dark">
                 Warning
               </Button>
             </Flex>
@@ -1249,7 +1249,7 @@ function Home() {
                   m: '$4',
                 }}
               >
-                <Button variant="transparentWhite">Transparent</Button>
+                <Button>Transparent</Button>
               </Box>
             </Box>
             <Box
@@ -1267,17 +1267,17 @@ function Home() {
                   m: '$4',
                 }}
               >
-                <Button variant="transparentBlack">Transparent</Button>
+                <Button>Transparent</Button>
               </Box>
             </Box>
             <Flex css={{ mt: '$6', gap: '$6' }}>
-              <Button variant="red" disabled>
+              <Button>
                 Disabled
               </Button>
-              <Button variant="red" state="active">
+              <Button>
                 Active
               </Button>
-              <Button variant="red" state="waiting" disabled>
+              <Button>
                 Waiting
               </Button>
             </Flex>
@@ -1292,7 +1292,7 @@ function Home() {
                 </Box>
                 Button
               </Button>
-              <Button variant="blue">
+              <Button>
                 Button
                 <Box
                   css={{
@@ -1302,7 +1302,7 @@ function Home() {
                   <ArrowRightIcon />
                 </Box>
               </Button>
-              <Button variant="green">
+              <Button>
                 <Box
                   css={{
                     mr: '$1',
@@ -1680,10 +1680,10 @@ function Home() {
                 </AlertDialogDescription>
                 <Flex css={{ jc: 'flex-end', gap: '$3', mt: '$5' }}>
                   <AlertDialogCancel asChild>
-                    <Button ghost>Cancel</Button>
+                    <Button>Cancel</Button>
                   </AlertDialogCancel>
                   <AlertDialogAction asChild>
-                    <Button variant="red">Delete</Button>
+                    <Button variant="warn">Delete</Button>
                   </AlertDialogAction>
                 </Flex>
               </AlertDialogContent>
@@ -1735,7 +1735,7 @@ function Home() {
                   </PopoverTrigger>
                   <PopoverContent>
                     <PopoverClose asChild>
-                      <Button ghost>Close</Button>
+                      <Button>Close</Button>
                     </PopoverClose>
                   </PopoverContent>
                 </Popover>
@@ -1851,7 +1851,7 @@ function Home() {
               </Popover>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="blue">Blue</Button>
+                  <Button>Blue</Button>
                 </PopoverTrigger>
                 <PopoverContent css={{ padding: '$3' }}>
                   <Text size="2" css={{ lineHeight: '18px' }}>
@@ -1862,7 +1862,7 @@ function Home() {
               </Popover>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="green">Green</Button>
+                  <Button>Green</Button>
                 </PopoverTrigger>
                 <PopoverContent css={{ padding: '$3' }}>
                   <Text size="2" css={{ lineHeight: '18px' }}>
@@ -1873,7 +1873,7 @@ function Home() {
               </Popover>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="red">Red</Button>
+                  <Button>Red</Button>
                 </PopoverTrigger>
                 <PopoverContent css={{ padding: '$3' }}>
                   <Text size="2" css={{ lineHeight: '18px' }}>
@@ -1884,7 +1884,7 @@ function Home() {
               </Popover>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button ghost>Ghost</Button>
+                  <Button>Ghost</Button>
                 </PopoverTrigger>
                 <PopoverContent css={{ padding: '$3' }}>
                   <Text size="2" css={{ lineHeight: '18px' }}>

@@ -25,11 +25,6 @@ import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';
 import { Badge } from '../components/Badge';
 
-import { Layers } from '../custom/Layers';
-import { Properties } from '../custom/Properties';
-import { Color } from '../custom/Color';
-import { Toolbar } from '../custom/Toolbar';
-
 import {
   Cross1Icon,
   PlusIcon,
@@ -184,7 +179,7 @@ function Ecommerce() {
                 <RadioGrid value="7">XL</RadioGrid>
               </RadioGridGroup>
               <Flex css={{ gap: '$3', my: '$5' }}>
-                <Button variant="green" size="3" css={{ fg: 1 }}>
+                <Button size="3" css={{ fg: 1 }}>
                   Add to Bag
                 </Button>
                 <IconButton size="3">

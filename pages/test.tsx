@@ -44,13 +44,7 @@ function Test() {
                 </Flex>
                 <Flex css={{ gap: '$4' }}>
                   <Button size="2">Button</Button>
-                  <Button size="2" variant="blue">
-                    Button
-                  </Button>
-                  <Button size="2" variant="green">
-                    Button
-                  </Button>
-                  <Button size="2" variant="red">
+                  <Button size="2" variant="dark">
                     Button
                   </Button>
                 </Flex>

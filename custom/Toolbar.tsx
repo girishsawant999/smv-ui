@@ -29,11 +29,11 @@ export function Toolbar() {
               <HamburgerMenuIcon />
             </IconButton>
           </Box>
-          <Button ghost css={{ fontWeight: 400 }}>
+          <Button css={{ fontWeight: 400 }}>
             Drafts
           </Button>
           <Text css={{ color: '$slate6' }}>/</Text>
-          <Button ghost css={{ fontWeight: 400 }}>
+          <Button css={{ fontWeight: 400 }}>
             Untitled
           </Button>
         </Flex>
@@ -222,7 +222,7 @@ export function Toolbar() {
         <Flex css={{ alignItems: 'center' }}>
           <Avatar size="2" shape="circle" fallback="C" />
 
-          <Button variant="blue" css={{ ml: '$3' }}>
+          <Button variant="dark" css={{ ml: '$3' }}>
             Share
           </Button>
           <IconButton css={{ ml: '$2' }}>

@@ -112,7 +112,7 @@ export const Button = React.forwardRef<React.ElementRef<typeof DEFAULT_TAG>, Sty
         }}
         ref={forwardedRef}
       >
-        {props.isRipple && <RippleEffect variant={props.variant} coords={coords} setCoords={setCoords} />}
+        {props.isRipple && <RippleEffect variant={props.variant as any} coords={coords} setCoords={setCoords} />}
         {props.children}
       </Styledbutton>
     );
