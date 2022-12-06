@@ -21,6 +21,7 @@ export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, I
   loading?: boolean;
   buttonType?: 'primary' | 'secondary' | 'tertiary' | 'error';
   className?: string;
+  ripple?: boolean;
 }
 
 const Button: React.FC<IButtonProps> = function (props): JSX.Element {
@@ -31,6 +32,7 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
     buttonType = 'primary',
     className = '',
     loader = 'circle-notch',
+    ripple = true,
     ...buttonProps
   } = props;
 
@@ -42,7 +44,7 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
         </span>
       </When>
       <span>{children}</span>
-      <Ripple />
+      {ripple && <Ripple />}
     </button>
   );
 };

@@ -3,9 +3,9 @@ import { clsx } from '../../utils';
 import './style.scss';
 
 export interface ITypography
-  extends React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement> {
+  extends React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement> {
   children: React.ReactNode;
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'code';
+  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'code' | 'label' ;
   font?: 'primary' | 'secondary';
   weight?: 'light' | 'extra-light' | 'medium' | 'regular' | 'bold' | 'semi-bold' | 'extra-bold';
   color?: 'black' | 'white' | 'primary' | 'secondary' | 'tertiary' | 'error';
