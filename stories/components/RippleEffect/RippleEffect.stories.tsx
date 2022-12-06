@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
-import { RippleEffect } from "../../../components/RippleEffect";
+import { RippleEffect } from "../../../src/components/RippleEffect";
 
 export default {
   title: "Example/RippleEffect",
