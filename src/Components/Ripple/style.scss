@@ -1,0 +1,27 @@
+@keyframes ripple-effect {
+  to {
+    transform: scale(calc(var(--ripple-scale-factor) * 4));
+    opacity: 0;
+  }
+}
+
+*[data-ripple-parent] {
+  position: relative;
+  --ripple-scale-factor: 2;
+
+  &[data-ripple-overflow='false'] {
+    --ripple-scale-factor: 1;
+    overflow: hidden;
+  }
+
+  span[data-ripple] {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    background-color: var(--ripple-effect-color);
+  }
+
+  &[data-rippling='true'] span[data-ripple] {
+    animation: ripple-effect calc(var(--ripple-time) * 1ms) linear;
+  }
+}

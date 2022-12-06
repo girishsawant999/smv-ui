@@ -1,0 +1,63 @@
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  padding: 1em 2em;
+  transition: transform 200ms;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.25rem;
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--color);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: var(--primary-font-semi-bold);
+
+  &[data-back-button],
+  &[data-cross-button] {
+    padding: 1em;
+  }
+
+  &.primary {
+    --background-color: var(--color-black-primary);
+    --color: var(--color-white);
+    --border-color: var(--color-black-primary);
+  }
+
+  &.secondary {
+    --background-color: var(--color-white);
+    --color: var(--color-black-primary);
+    --border-color: var(--color-black-primary);
+  }
+
+  &.tertiary {
+    --background-color: var(--color-grey-primary);
+    --color: var(--color-black-primary);
+  }
+
+  &.error {
+    --background-color: var(--color-red);
+    --color: var(--color-white);
+  }
+
+  > span {
+    margin: 0 0.2em;
+    display: flex;
+  }
+
+  &:disabled {
+    opacity: 0.8;
+    transform: scale(0.98);
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    transform: scale(0.98);
+    box-shadow: var(--box-shadow-button);
+  }
+  &:focus {
+    box-shadow: var(--box-shadow-button);
+  }
+}

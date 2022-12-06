@@ -1,0 +1,73 @@
+div[data-smv-checkbox] {
+  display: flex;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-inline-end: 0.5rem;
+  margin-block-end: 0.5rem;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    padding-inline-start: 2.5rem;
+    margin-inline-start: -2rem;
+    cursor: pointer;
+    text-transform: capitalize;
+    z-index: 1;
+    flex-grow: 1;
+  }
+
+  .checkbox-input {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+
+    input[type='checkbox'] {
+      position: absolute;
+      visibility: hidden;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      border: 2px solid #1a181b;
+      cursor: pointer;
+
+      ~ span.check-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        border: 2px solid #1a181b;
+        border-radius: 0.5rem;
+        transition: all 0.15s ease-in-out;
+
+        &::after {
+          content: '';
+          position: absolute;
+          transition: transform 0.15s ease-in-out 0.15s;
+          left: 25%;
+          top: 45%;
+          width: 0;
+          height: 0;
+          border: solid var(--color-white);
+          width: 5px;
+          height: 10px;
+          transform: rotate(45deg) translate(-50%, -50%) scale(0);
+          transform-origin: center;
+          border-width: 0 2px 2px 0;
+        }
+      }
+
+      &:checked ~ span.check-box {
+        background: #1a181b;
+
+        &::after {
+          transform: rotate(45deg) translate(-50%, -50%) scale(1);
+        }
+      }
+    }
+  }
+}
