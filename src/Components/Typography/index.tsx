@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { clsx } from '../../utils';
 import './style.scss';
 
-interface ITypography
+export interface ITypography
   extends React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement> {
   children: React.ReactNode;
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'code';
@@ -28,7 +28,7 @@ const Typography = ({
     if (!ref.current) return;
     const ele = ref.current as HTMLElement;
     ele.style.setProperty('--font-size', size.toString());
-  }, [ref.current]);
+  }, [ref.current, size]);
 
   const WrapperComponent = variant;
   return (

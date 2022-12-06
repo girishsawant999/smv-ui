@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
+import './style.scss';
 
-interface IRipple {
+export interface IRipple {
 	overflow?: boolean;
 	rippleTime?: number;
 }

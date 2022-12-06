@@ -1,10 +1,11 @@
 export interface ISVGProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   stroke?: string;
-  strokeWidth?: string;
+  strokeWidth?: number;
   fill?: string;
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
 }
 
 export { default as CrossIcon } from './CrossIcon';
 export { default as LeftArrowIcon } from './LeftArrowIcon';
+

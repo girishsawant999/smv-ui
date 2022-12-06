@@ -3,13 +3,13 @@ import Ripple from '../Ripple';
 import Typography from '../Typography';
 import './style.scss';
 
-interface listDataProps {
+export interface listDataProps {
   name: string;
   label: string;
   value: string;
 }
 
-interface ICheckboxesProps {
+export interface ICheckboxesProps {
   selectedValues: listDataProps[];
   // eslint-disable-next-line no-unused-vars
   setSelectedValues: <T extends listDataProps>(obj: T[]) => void;

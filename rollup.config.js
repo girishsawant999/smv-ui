@@ -1,5 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
+import { uglify } from 'rollup-plugin-uglify';
 import pkg from './package.json';
+
 // PostCSS plugins
 import cssnano from 'cssnano';
 import cssnext from 'postcss-cssnext';
@@ -14,10 +16,10 @@ export default {
       file: pkg.main,
       format: 'cjs',
     },
-    {
-      file: pkg.module,
-      format: 'es',
-    },
+    // {
+    //   file: pkg.module,
+    //   format: 'es',
+    // },
   ],
   inlineDynamicImports: true,
   external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
@@ -31,5 +33,6 @@ export default {
       plugins: [simplevars(), nested(), cssnext({ warnForDuplicates: false }), cssnano()],
       extensions: ['.css'],
     }),
+    uglify(),
   ],
 };

@@ -15,7 +15,7 @@ const When = ({ isTrue, children }: IWhen): JSX.Element => {
   return <>{children}</>;
 };
 
-interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, ILoadersTypes {
+export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, ILoadersTypes {
   children: React.ReactNode;
   disabled?: boolean;
   loading?: boolean;
@@ -35,7 +35,7 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
   } = props;
 
   return (
-    <button disabled={disabled || loading} className={clsx(buttonType, className)} {...buttonProps}>
+    <button disabled={disabled || loading} className={clsx('smv-button',buttonType, className)} {...buttonProps}>
       <When isTrue={loading}>
         <span>
           <Loader loader={loader} />
@@ -47,13 +47,13 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
   );
 };
 
-interface IBackButton extends Omit<IButtonProps, 'children'> {
-  children?: React.ReactNode;
+export interface IBackButton extends Omit<IButtonProps, 'children'> {
 }
+
 export const BackButton = (props: IBackButton): JSX.Element => {
   return (
     <Button data-back-button buttonType="tertiary" {...props}>
-      <Icons.LeftArrowIcon width="20" height="20" />
+      <Icons.LeftArrowIcon  width={20} height={20}/>
     </Button>
   );
 };
@@ -61,7 +61,7 @@ export const BackButton = (props: IBackButton): JSX.Element => {
 export const CrossButton = (props: IBackButton): JSX.Element => {
   return (
     <Button data-cross-button buttonType="tertiary" {...props}>
-      <Icons.CrossIcon strokeWidth="1.5" width="20" height="20" />
+      <Icons.CrossIcon strokeWidth={1.5} width={20} height={20} />
     </Button>
   );
 };
