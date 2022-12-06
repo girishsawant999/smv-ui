@@ -9,7 +9,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "rollup -c -w --bundleConfigAsCjs",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "cross-env rm -rf dist && rollup -c",
     "release": "npm run ds:build && npm publish --access public",
     "prettier": "prettier --write .",
     "storybook": "start-storybook -p 6006",
@@ -39,6 +39,7 @@
     "babel-loader": "^8.3.0",
     "bezier-easing": "^2.1.0",
     "chroma-js": "^2.1.1",
+    "cross-env": "^7.0.3",
     "cssnano": "^5.1.14",
     "eslint-plugin-react": "^7.31.11",
     "husky": ">=4",

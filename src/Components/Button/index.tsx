@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icons } from '../../';
+import * as Icons from '../../Icons';
 import { clsx } from '../../utils';
 import Loader from '../Loader';
 import { ILoadersTypes } from '../Loader/types';

@@ -18,10 +18,10 @@
     position: absolute;
     border-radius: 50%;
     transform: scale(0);
-    background-color: var(--ripple-effect-color);
+    background-color: var(--ripple-effect-color, #7f7f7f7f);
   }
 
   &[data-rippling='true'] span[data-ripple] {
-    animation: ripple-effect calc(var(--ripple-time) * 1ms) linear;
+    animation: ripple-effect calc(var(--ripple-time, 600) * 1ms) linear;
   }
 }
