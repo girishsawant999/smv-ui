@@ -22,6 +22,7 @@ export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, I
   buttonType?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'link';
   className?: string;
   ripple?: boolean;
+  fullWidth?: boolean;
 }
 
 const Button: React.FC<IButtonProps> = function (props): JSX.Element {
@@ -33,11 +34,16 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
     className = '',
     loader = 'circle-notch',
     ripple = true,
+    fullWidth = false,
     ...buttonProps
   } = props;
 
   return (
-    <button disabled={disabled || loading} className={clsx('smv-button',buttonType, className)} {...buttonProps}>
+    <button
+      disabled={disabled || loading}
+      className={clsx('smv-button', buttonType, fullWidth ? 'full-width' : '', className)}
+      {...buttonProps}
+    >
       <When isTrue={loading}>
         <span>
           <Loader loader={loader} />
@@ -49,13 +55,12 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
   );
 };
 
-export interface IBackButton extends Omit<IButtonProps, 'children'> {
-}
+export interface IBackButton extends Omit<IButtonProps, 'children'> {}
 
 export const BackButton = (props: IBackButton): JSX.Element => {
   return (
     <Button data-back-button buttonType="tertiary" {...props}>
-      <Icons.LeftArrowIcon  width={20} height={20}/>
+      <Icons.LeftArrowIcon width={20} height={20} />
     </Button>
   );
 };

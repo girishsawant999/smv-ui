@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { clsx } from '../../utils';
+import Input from '../Input';
 import Ripple from '../Ripple';
 import Typography from '../Typography';
 import './style.scss';
@@ -106,7 +107,7 @@ const VerticalSelect = ({
 
       <div className={clsx('content')}>
         {showSearch && (
-          <input
+          <Input
             autoFocus
             ref={inputRef}
             value={searchQuery}

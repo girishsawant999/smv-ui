@@ -3,10 +3,12 @@ import Ripple from '../Ripple';
 import Typography from '../Typography';
 import './style.scss';
 
-export interface listDataProps {
+export interface listDataProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   name: string;
   label: string;
   value: string;
+  layout?: 'checkbox' | 'radio';
 }
 
 export interface ICheckboxesProps {
@@ -15,12 +17,18 @@ export interface ICheckboxesProps {
   setSelectedValues: <T extends listDataProps>(obj: T[]) => void;
   selectMultiple?: boolean;
   listData: unknown;
+  layout?: 'checkbox' | 'radio';
 }
 
 const CheckboxesList = <T extends listDataProps>(props: ICheckboxesProps): JSX.Element => {
-  const { selectedValues, setSelectedValues, selectMultiple = false } = props;
+  const {
+    selectedValues,
+    setSelectedValues,
+    selectMultiple = false,
+    layout = 'checkbox',
+    ...otherProps
+  } = props;
   const listData = props.listData as T[];
-
   const _values = selectedValues.map((_) => _.value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, obj: T): void => {
@@ -44,7 +52,7 @@ const CheckboxesList = <T extends listDataProps>(props: ICheckboxesProps): JSX.E
   return (
     <>
       {listData.map((item) => (
-        <div key={item.name} data-smv-checkbox>
+        <div key={item.name} data-smv-checkbox data-checked={_values.includes(item.value)} data-layout={layout} {...otherProps} {...item}>
           <span className="checkbox-input">
             <input
               type="checkbox"
