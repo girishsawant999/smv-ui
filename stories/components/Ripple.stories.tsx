@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { Ripple } from "../../src/index";
+import { Ripple, Typography } from "../../src/index";
 
 export default {
 	title: "SMV-UI/Components/Ripple",
@@ -18,7 +18,9 @@ const Template: ComponentStory<typeof Ripple> = (args) => (
         alignItems: "center"
 }}>
         <Ripple {...args}/>
-		Click to check ripple effect
+        <Typography size={12}>
+		    Click to check ripple effect
+        </Typography>
 	</div>
 );
 

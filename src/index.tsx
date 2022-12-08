@@ -7,6 +7,7 @@ import * as utils from './utils';
 export { BackButton, CrossButton, default as Button } from './Components/Button';
 export { default as Card } from './Components/Card';
 export { default as CheckboxesList } from './Components/CheckboxesList';
+export { default as Input } from './Components/Input';
 export { default as Loader } from './Components/Loader';
 export { default as Overlay } from './Components/Overlay';
 export { default as Ripple } from './Components/Ripple';

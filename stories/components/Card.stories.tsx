@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Button, Card, Typography } from '../../src/index';
+import { Button, Card, Input, Typography } from '../../src/index';
 
 export default {
   title: 'SMV-UI/Components/Card',
@@ -26,7 +26,9 @@ Main.args = {
         iste officia ea alias necessitatibus vitae mollitia! Fuga ea doloremque suscipit numquam
         placeat architecto sint ducimus dolorem!
       </Typography>
-      <Button style={{fontSize: '12px'}}> Test Button Card</Button>
+
+      <Input value="Lorem Ipsum" fullWidth style={{marginBlock: '20px'}}/>
+      <Button fullWidth style={{fontSize: '14px', marginInline:'auto'}}> Test Button Card</Button>
     </>
   ),
 };
