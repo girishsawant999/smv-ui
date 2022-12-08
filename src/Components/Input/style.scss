@@ -1,0 +1,45 @@
+input[data-smv-input] {
+  position: relative;
+  padding: 1rem;
+  border: 2px solid #e6e4e7;
+  text-align: center;
+  border-radius: 1.75rem;
+  outline-color: #e6e4e7;
+  font-size: 14px;
+  font-family: var(--primary-font-semi-bold);
+  transition: 0.2s ease-in-out;
+
+  &[data-full-width='true'] {
+    width: 100%;
+  }
+
+  &::placeholder {
+    color: #e6e4e7;
+    font-size: 12px;
+    text-transform: capitalize;
+    transition: 0.2s ease-in-out;
+  }
+
+  &:focus {
+    outline-color: #1a181b;
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &:focus:focus-visible {
+    outline: none !important;
+    border-color: #1a181b;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
