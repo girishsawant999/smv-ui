@@ -12,6 +12,7 @@
   &[data-ripple-overflow='false'] {
     --ripple-scale-factor: 1;
     overflow: hidden;
+    will-change: transform;
   }
 
   span[data-ripple] {

@@ -19,7 +19,7 @@ export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, I
   children: React.ReactNode;
   disabled?: boolean;
   loading?: boolean;
-  buttonType?: 'primary' | 'secondary' | 'tertiary' | 'error';
+  buttonType?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'link';
   className?: string;
   ripple?: boolean;
 }

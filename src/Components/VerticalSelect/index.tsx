@@ -65,25 +65,35 @@ const VerticalSelect = ({
     const element: HTMLElement | null = document.querySelector(
       'div[data-vertical-select][data-show="false"][data-selected="false"] > div'
     );
-    setTimeout(() => element && element.click(), 200);
-    setOpen(false);
+    setTimeout(() => {
+      element && element.click();
+      setOpen(false);
+    }, 200);
   };
 
   const _options = options.filter(
     (_) => !searchQuery || _.label.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
   );
   const selectedOption = options.find((option) => option.value === value);
+  const iconsExist = options.some((option) => option.icon);
+
   return (
     <div
       data-vertical-select
-      data-show={open}
+      data-show={open && !disabled}
       data-selected={Boolean(selectedOption)}
       data-disabled={disabled}
       className={clsx('root-vertical-select')}
     >
       <div className={clsx('titleContainer')} tabIndex={0} role="button" onClick={handleOnClick}>
         <Ripple overflow />
-        <Typography variant="label" size={open ? 18: 16} weight="semi-bold">{label}</Typography>
+        <Typography
+          variant="label"
+          size={open ? 18 : 16}
+          weight={open ? 'extra-bold' : 'semi-bold'}
+        >
+          {label}
+        </Typography>
         {selectedOption && (
           <Typography size={14} variant="p" weight="semi-bold">
             <span className={clsx('optionIcon')}>
@@ -109,9 +119,25 @@ const VerticalSelect = ({
         )}
 
         <div className={clsx('optionsContainer')}>
-          {_options.map((option, index) => {
-            const iconsExist = options.some((option) => option.icon);
+          {/* 
+        {selectedOption && <div
+                className={clsx('option')}
+                style={{ '--option-index': 0 } as React.CSSProperties}
+                tabIndex={0}
+                role="button"
+                onClick={() => setValue('')}
+                key={`clear`}
+              >
+                <Ripple />
+                <span className={clsx('optionIcon')}>
+                  {iconsExist && <span className={clsx('mockImage transparent')}></span>}
+                </span>
+                <Typography size={16} variant="p" weight="regular">
+                 Clear option
+                </Typography>
+              </div>} */}
 
+          {_options.map((option, index) => {
             return (
               <div
                 className={clsx('option')}
@@ -134,7 +160,7 @@ const VerticalSelect = ({
           })}
 
           {_options.length === 0 && (
-            <Typography size={14} variant="p" weight="light" className='no-result-found'>
+            <Typography size={14} variant="p" weight="light" className="no-result-found">
               No options available {searchQuery && `for "${searchQuery}"`}
             </Typography>
           )}

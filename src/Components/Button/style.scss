@@ -1,4 +1,4 @@
-button.smv-button {
+.smv-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +42,15 @@ button.smv-button {
     --color: var(--color-white);
   }
 
+  &.link {
+    --background-color: none;
+    --color: var(--color-black-primary);
+    outline: none;
+    border: none;
+    padding: 4px;
+    text-decoration: underline;
+  }
+
   > span {
     margin: 0 0.2em;
     display: flex;
@@ -53,11 +62,12 @@ button.smv-button {
     cursor: not-allowed;
   }
 
-  &:hover {
+  &:not(.link):hover {
     transform: scale(0.98);
     box-shadow: var(--box-shadow-button);
   }
-  &:focus {
+
+  &:not(.link):focus {
     box-shadow: var(--box-shadow-button);
   }
 }

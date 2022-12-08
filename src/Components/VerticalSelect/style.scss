@@ -83,6 +83,7 @@
         cursor: pointer;
         opacity: 1;
         transition: 300ms ease-in-out;
+        border-radius: 16px;
         transition-delay: calc(100ms + 100ms * var(--option-index));
 
         .optionIcon {
@@ -101,6 +102,10 @@
             border-radius: 4px;
             display: inline-block;
             height: 24px;
+
+            &.transparent {
+              background-color: transparent;
+            }
           }
         }
       }
