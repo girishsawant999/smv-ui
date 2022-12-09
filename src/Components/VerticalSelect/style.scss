@@ -5,7 +5,7 @@
   border: 2px solid #e6e4e7;
   margin-block-end: 1rem;
   padding: 20px;
-  transition: 300ms ease-in-out;
+  transition: var(--transition);
   overflow: hidden;
   will-change: transform;
 
@@ -15,7 +15,7 @@
     align-items: center;
     gap: 1rem;
     label {
-      transition: 300ms ease-in-out;
+      transition: var(--transition);
     }
 
     p {
@@ -36,7 +36,7 @@
   }
 
   .content {
-    transition: 300ms ease-in-out;
+    transition: var(--transition);
     height: auto;
     overflow: hidden;
 
@@ -84,7 +84,7 @@
         border-bottom: 1px solid #f5f4f5;
         cursor: pointer;
         opacity: 1;
-        transition: 300ms ease-in-out;
+        transition: var(--transition);
         border-radius: 16px;
         transition-delay: calc(100ms + 100ms * var(--option-index));
 

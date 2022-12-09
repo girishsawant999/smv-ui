@@ -7,7 +7,7 @@ input[data-smv-input] {
   outline-color: #e6e4e7;
   font-size: 14px;
   font-family: var(--primary-font-semi-bold);
-  transition: 0.2s ease-in-out;
+  transition: var(--transition);
 
   &[data-full-width='true'] {
     width: 100%;
@@ -17,7 +17,7 @@ input[data-smv-input] {
     color: #e6e4e7;
     font-size: 12px;
     text-transform: capitalize;
-    transition: 0.2s ease-in-out;
+    transition: var(--transition);
   }
 
   &:focus {

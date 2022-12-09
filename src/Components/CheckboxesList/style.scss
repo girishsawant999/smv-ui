@@ -44,7 +44,7 @@ div[data-smv-checkbox] {
         z-index: 0;
         border: 2px solid #1a181b;
         border-radius: 0.5rem;
-        transition: all 0.2s ease-in-out;
+        transition: var(--transition);
 
         &::after {
           content: '';
@@ -92,7 +92,7 @@ div[data-smv-checkbox] {
           z-index: 0;
           border: 2px solid #1a181b;
           border-radius: 50%;
-          transition: all 0.2s ease-in-out;
+          transition: var(--transition);
 
           &::after {
             content: none;
