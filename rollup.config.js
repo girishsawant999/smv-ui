@@ -3,10 +3,6 @@ import { uglify } from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
 // PostCSS plugins
-import cssnano from 'cssnano';
-import cssnext from 'postcss-cssnext';
-import nested from 'postcss-nested';
-import simplevars from 'postcss-simple-vars';
 import postcss from 'rollup-plugin-postcss';
 
 export default {
@@ -29,10 +25,7 @@ export default {
       tsconfig: 'tsconfig-rollup.json',
       typescript: require('typescript'),
     }),
-    postcss({
-      plugins: [simplevars(), nested(), cssnext({ warnForDuplicates: false }), cssnano()],
-      extensions: ['.css'],
-    }),
+    postcss(require('./postcss.config')),
     uglify(),
   ],
 };
