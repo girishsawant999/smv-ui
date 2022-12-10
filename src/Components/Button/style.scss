@@ -2,17 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  padding: 1em 2em;
+  font-size: calc(var(--font-size, 16) * 1px);
+  padding: calc(var(--font-size, 16) * 0.8px) calc(var(--font-size, 16) * 2px);
   transition: transform var(--transition);
   cursor: pointer;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: calc(var(--font-size, 16) * 1px);
   outline: none;
   background-color: var(--background-color);
   color: var(--color);
   border: var(--border-width) solid var(--border-color);
-  border-radius: var(--border-radius);
   font-family: var(--primary-font-semi-bold);
 
   &.full-width {

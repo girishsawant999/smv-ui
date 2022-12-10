@@ -37,6 +37,12 @@
   src: url('./fonts/Sequel100Black-76.ttf');
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   // Fonts Family
   --primary-font-light: 'Manrope-ExtraLight';
@@ -67,10 +73,4 @@ body {
   --transition-duration: 200ms;
   --transition-function: ease-in-out;
   --transition: var(--transition-duration) var(--transition-function);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }

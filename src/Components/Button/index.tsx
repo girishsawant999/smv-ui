@@ -23,6 +23,7 @@ export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, I
   className?: string;
   ripple?: boolean;
   fullWidth?: boolean;
+  fontSize?: number;
 }
 
 const Button: React.FC<IButtonProps> = function (props): JSX.Element {
@@ -35,6 +36,8 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
     loader = 'circle-notch',
     ripple = true,
     fullWidth = false,
+    fontSize,
+    style,
     ...buttonProps
   } = props;
 
@@ -42,6 +45,9 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
     <button
       disabled={disabled || loading}
       className={clsx('smv-button', buttonType, fullWidth ? 'full-width' : '', className)}
+      style={
+        fontSize ? ({ '--font-size': fontSize, ...style } as React.CSSProperties) : { ...style }
+      }
       {...buttonProps}
     >
       <When isTrue={loading}>

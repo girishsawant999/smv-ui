@@ -49,6 +49,7 @@ const Template: ComponentStory<typeof CheckboxesList> = (args) => {
 export const Basic = Template.bind({});
 
 Basic.args = {
+  layout: 'radio',
   listData: listData,
   selectedValues: [listData[1]],
 };

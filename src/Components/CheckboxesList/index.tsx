@@ -52,7 +52,16 @@ const CheckboxesList = <T extends listDataProps>(props: ICheckboxesProps): JSX.E
   return (
     <>
       {listData.map((item) => (
-        <div key={item.name} data-smv-checkbox data-checked={_values.includes(item.value)} data-layout={layout} {...otherProps} {...item}>
+        <div
+          tabIndex={0}
+          role="button"
+          key={item.name}
+          data-smv-checkbox
+          data-checked={_values.includes(item.value)}
+          data-layout={layout}
+          {...otherProps}
+          {...item}
+        >
           <span className="checkbox-input">
             <input
               type="checkbox"
