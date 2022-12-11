@@ -24,7 +24,7 @@ input[data-smv-input] {
     outline-color: #1a181b;
 
     &::placeholder {
-      color: transparent;
+      opacity: 0.5;
     }
   }
 

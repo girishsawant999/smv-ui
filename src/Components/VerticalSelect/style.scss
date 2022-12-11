@@ -78,10 +78,10 @@
 
       .option {
         padding-block: 12px;
+        padding-inline: 6px;
         display: flex;
         align-items: center;
         width: 100%;
-        border-bottom: 1px solid #f5f4f5;
         cursor: pointer;
         opacity: 1;
         transition: var(--transition);

@@ -1,0 +1,35 @@
+div[data-smv-date-picker] {
+  position: relative;
+
+  input {
+    &::placeholder {
+      text-transform: lowercase;
+    }
+  }
+
+  &[data-full-width='false'] {
+    display: inline-block;
+  }
+
+  .calendar {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    scale: 0;
+    translate: -50% 0;
+    transition: var(--transition);
+    transform-origin: top center;
+    padding: 0;
+  }
+
+  &[data-open='true'] {
+    input {
+      border-color: var(--color-primary);
+    }
+
+    .calendar {
+      top: calc(100% + 1rem);
+      scale: 1;
+    }
+  }
+}

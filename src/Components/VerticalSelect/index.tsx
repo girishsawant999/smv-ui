@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { clsx } from '../../utils';
 import Input from '../Input';
 import Ripple from '../Ripple';
@@ -12,7 +12,8 @@ interface IOption {
   key?: string;
 }
 
-export interface IVerticalSelect {
+export interface IVerticalSelect
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   label: string;
   name: string;
   options: IOption[];
@@ -33,6 +34,8 @@ const VerticalSelect = ({
   placeholder = '',
   defaultOpen = false,
   showSearch = false,
+  className = '',
+  ...otherProps
 }: IVerticalSelect): JSX.Element => {
   const [open, setOpen] = useState(disabled ? false : defaultOpen);
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,6 +48,15 @@ const VerticalSelect = ({
     } else {
       inputRef && inputRef.current && inputRef.current.focus();
     }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const optionsContainer = document.querySelector('div[data-show="true"] .optionsContainer');
+    if (!optionsContainer) return;
+    const selected = optionsContainer.querySelector('.selected');
+    if (!selected) return;
+    optionsContainer.scrollTop = (selected as HTMLElement).offsetTop - 148;
   }, [open]);
 
   const handleOnClick = () => {
@@ -84,7 +96,8 @@ const VerticalSelect = ({
       data-show={open && !disabled}
       data-selected={Boolean(selectedOption)}
       data-disabled={disabled}
-      className={clsx('root-vertical-select')}
+      className={clsx('root-vertical-select', className)}
+      {...otherProps}
     >
       <div className={clsx('titleContainer')} tabIndex={0} role="button" onClick={handleOnClick}>
         <Ripple overflow />
@@ -106,7 +119,7 @@ const VerticalSelect = ({
       </div>
 
       <div className={clsx('content')}>
-        {showSearch && (
+        {showSearch && open && (
           <Input
             autoFocus
             ref={inputRef}
@@ -139,10 +152,11 @@ const VerticalSelect = ({
               </div>} */}
 
           {_options.map((option, index) => {
+            const selectedOptionIndex = _options.findIndex((_) => _.value === value);
             return (
               <div
-                className={clsx('option')}
-                style={{ '--option-index': index } as React.CSSProperties}
+                className={clsx('option', value === option.value && 'selected')}
+                style={{ '--option-index': index - selectedOptionIndex } as React.CSSProperties}
                 tabIndex={0}
                 role="button"
                 onClick={() => onOptionClick(option)}
@@ -171,4 +185,4 @@ const VerticalSelect = ({
   );
 };
 
-export default VerticalSelect;
+export default memo(VerticalSelect);

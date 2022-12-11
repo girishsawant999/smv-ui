@@ -66,7 +66,7 @@ export interface IBackButton extends Omit<IButtonProps, 'children'> {}
 export const BackButton = (props: IBackButton): JSX.Element => {
   return (
     <Button data-back-button buttonType="tertiary" {...props}>
-      <Icons.LeftArrowIcon width={20} height={20} />
+      <Icons.LeftArrowIcon width={20} height={20}  />
     </Button>
   );
 };
