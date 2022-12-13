@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Icons, VerticalSelect } from '../..';
-import { clsx, convertDate, daysMap, monthMap } from '../../utils';
+import { clsx, convertDate, daysMap, getDateTimeStamp, monthMap } from '../../utils';
 import Ripple from '../Ripple';
 import Typography from '../Typography';
 import './style.scss';
@@ -13,29 +13,41 @@ interface IDay {
   dayString: string;
 }
 
-export interface ICalendarProps extends Omit<React.HtmlHTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface ICalendarConditionProps {
+  minDate?: Date;
+  maxDate?: Date;
+  disablePastDates?: boolean;
+  disableFutureDates?: boolean;
+  disableDates?: Date[];
+}
+
+export interface ICalendarProps
+  extends Omit<React.HtmlHTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'>,
+    ICalendarConditionProps {
+  defaultValue?: string | number | Date;
   value?: string | number | Date;
   onChange?: (val: Date) => void;
 }
-
-const oneDay = 60 * 60 * 24 * 1000;
 
 const Calendar = ({
   children,
   className = '',
   value,
   onChange,
+  defaultValue = new Date(),
+  minDate,
+  maxDate,
+  disablePastDates,
+  disableFutureDates,
+  disableDates,
   ...props
 }: ICalendarProps): JSX.Element => {
-  const date = useMemo(() => (value && convertDate(value)) || new Date(), [value]);
-  const defaultSelectedTimestamp =
-    date.getTime() - (date.getTime() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60;
-  const todayTimestamp =
-    Date.now() - (Date.now() % oneDay) + new Date().getTimezoneOffset() * 1000 * 60;
+  const initial = value ? convertDate(value) : convertDate(defaultValue);
+  const todayTimestamp = getDateTimeStamp(new Date());
 
-  const [year, setYear] = useState(date.getFullYear());
-  const [month, setMonth] = useState(date.getMonth());
-  const [selectedDay, setSelectedDay] = useState(defaultSelectedTimestamp);
+  const [year, setYear] = useState(initial.getFullYear());
+  const [month, setMonth] = useState(initial.getMonth());
+  const [selectedDay, setSelectedDay] = useState<number | undefined>(undefined);
   const [monthDetails, setMonthDetails] = useState<IDay[]>([]);
 
   const getDayDetails = (args: {
@@ -103,7 +115,27 @@ const Calendar = ({
     return day.timestamp === selectedDay;
   };
 
+  const isDayActive = (timestamp: number) => {
+    if (disablePastDates && timestamp < todayTimestamp) {
+      return false;
+    }
+    if (disableFutureDates && timestamp > todayTimestamp) {
+      return false;
+    }
+    if (minDate && timestamp < getDateTimeStamp(minDate)) {
+      return false;
+    }
+    if (maxDate && timestamp > getDateTimeStamp(maxDate)) {
+      return false;
+    }
+    if (disableDates && disableDates.map((date) => getDateTimeStamp(date)).includes(timestamp)) {
+      return false;
+    }
+    return true;
+  };
+
   const onDateClick = (day: IDay) => {
+    if (!isDayActive(day.timestamp)) return;
     setSelectedDay(day.timestamp);
   };
 
@@ -124,19 +156,33 @@ const Calendar = ({
   };
 
   useEffect(() => {
+    if (!defaultValue) return;
+    const date = convertDate(defaultValue);
+    const timestamp = getDateTimeStamp(date);
+    if (!isDayActive(timestamp)) return;
+    setSelectedDay(timestamp);
+    setYear(date.getFullYear());
+    setMonth(date.getMonth());
+  }, []);
+
+  useEffect(() => {
     setMonthDetails(getMonthDetails(year, month));
   }, [year, month]);
 
   useEffect(() => {
-    onChange && onChange(convertDate(selectedDay));
-  }, [selectedDay]);
+    if (!value) return;
+    const date = convertDate(value);
+    const timestamp = getDateTimeStamp(date);
+    if (!isDayActive(timestamp)) return;
+    setSelectedDay(timestamp);
+    setYear(date.getFullYear());
+    setMonth(date.getMonth());
+  }, [value]);
 
   useEffect(() => {
-    console.log('first', defaultSelectedTimestamp, selectedDay);
-    if (selectedDay !== defaultSelectedTimestamp) {
-      setSelectedDay(defaultSelectedTimestamp);
-    }
-  }, [defaultSelectedTimestamp]);
+    if (!selectedDay) return;
+    onChange && onChange(convertDate(selectedDay));
+  }, [selectedDay]);
 
   const YearsDropdown = () => {
     const createYearsArray = (startYear = 1970, endYear = 2099) => {
@@ -188,13 +234,16 @@ const Calendar = ({
         <div
           className={
             'day-container ' +
-            (day.month !== 0 ? ' disabled' : '') +
+            (day.month !== 0 || !isDayActive(day.timestamp) ? ' disabled' : '') +
             (isCurrentDay(day) ? ' current-day' : '') +
             (isSelectedDay(day) ? ' selected-day' : '')
           }
           key={index}
         >
-          <button disabled={day.month !== 0} onClick={() => onDateClick(day)}>
+          <button
+            disabled={day.month !== 0 || !isDayActive(day.timestamp)}
+            onClick={() => onDateClick(day)}
+          >
             <Typography variant="span" size={12}>
               {day.date}
             </Typography>

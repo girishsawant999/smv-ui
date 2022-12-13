@@ -63,6 +63,7 @@
       height: 148px;
       overflow-y: auto;
       margin-block-start: 1rem;
+      scroll-behavior: smooth;
 
       &::-webkit-scrollbar {
         width: 2px;

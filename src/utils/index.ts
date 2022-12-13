@@ -33,3 +33,8 @@ export const convertDate = (date: string | number | Date): Date => {
 
   return _date;
 };
+
+export const getDateTimeStamp = (date: string | number | Date): number => {
+  const _date = convertDate(date);
+  return new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0).getTime();
+};

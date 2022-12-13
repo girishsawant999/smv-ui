@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
+import useDelayMount from '../../hooks/useDelayMount';
 import { clsx } from '../../utils';
 import Input from '../Input';
 import Ripple from '../Ripple';
@@ -39,6 +40,7 @@ const VerticalSelect = ({
 }: IVerticalSelect): JSX.Element => {
   const [open, setOpen] = useState(disabled ? false : defaultOpen);
   const [searchQuery, setSearchQuery] = useState('');
+  const mounted = useDelayMount(open)
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -51,13 +53,13 @@ const VerticalSelect = ({
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!mounted) return;
     const optionsContainer = document.querySelector('div[data-show="true"] .optionsContainer');
     if (!optionsContainer) return;
     const selected = optionsContainer.querySelector('.selected');
     if (!selected) return;
     optionsContainer.scrollTop = (selected as HTMLElement).offsetTop - 148;
-  }, [open]);
+  }, [mounted]);
 
   const handleOnClick = () => {
     if (!open && disabled) return;
@@ -156,7 +158,7 @@ const VerticalSelect = ({
             return (
               <div
                 className={clsx('option', value === option.value && 'selected')}
-                style={{ '--option-index': index - selectedOptionIndex } as React.CSSProperties}
+                style={{ '--option-index': index - selectedOptionIndex + 1 } as React.CSSProperties}
                 tabIndex={0}
                 role="button"
                 onClick={() => onOptionClick(option)}
