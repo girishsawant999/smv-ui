@@ -5,8 +5,6 @@
   padding: 1rem;
   background: var(--color-white);
   position: relative;
-  min-width: 235px;
-  max-width: 320px;
 
   button {
     padding: 0.5rem;
@@ -17,6 +15,7 @@
     border: none;
     background: transparent;
     border-radius: 20%;
+    transition: var(--transition);
   }
 
   .calendar-select {
@@ -59,7 +58,6 @@
   }
 
   .head {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -85,8 +83,9 @@
 
   .sub-head {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: nowrap;
+    gap: 4px;
     justify-content: space-between;
     margin-top: 1rem;
 
@@ -96,6 +95,13 @@
         cursor: pointer;
         border-radius: 14px;
         padding: 0.275rem 1rem;
+
+        &:hover {
+          background-color: var(--color-black-secondary);
+          span {
+            color: var(--color-white);
+          }
+        }
       }
 
       button.today-btn.selected {
@@ -111,66 +117,71 @@
       span {
         display: flex;
         align-items: center;
+        text-align: center;
 
         span.icon {
           margin-inline: 4px;
           cursor: pointer;
         }
+
+        button.clear-btn {
+          margin-inline-start: 0.275rem;
+          border: 1px solid var(--color-black-primary);
+          cursor: pointer;
+          border-radius: 14px;
+          padding: 0.275rem 1rem;
+
+          &:hover {
+            background-color: var(--color-black-secondary);
+            span {
+              color: var(--color-white);
+            }
+          }
+        }
       }
     }
   }
 
-  .body {
-    width: 100%;
-    margin-top: 1rem;
+  .calendars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 
-    .container {
-      .head {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        align-items: center;
-        justify-items: center;
-      }
+    .body {
+      margin-top: 1rem;
+      flex-grow: 1;
 
-      .body {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        align-items: center;
-        justify-items: center;
+      .container {
+        .head {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          align-items: center;
+          justify-items: center;
+        }
 
-        .day-container {
-          width: 100%;
-          button {
-            cursor: pointer;
-            border-radius: 50%;
+        .body {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          align-items: center;
+          justify-items: center;
+
+          .day-container {
             width: 100%;
-            padding: 0;
-            aspect-ratio: 1;
-          }
-
-          &.current-day {
             button {
-              border: 1px solid var(--color-black-primary);
+              cursor: pointer;
+              border-radius: 50%;
+              width: 100%;
+              padding: 0;
+              aspect-ratio: 1;
             }
-          }
 
-          &.selected-day:not(.disabled) {
-            button {
-              background-color: var(--color-black-primary);
-              span {
-                color: var(--color-white);
+            &.current-day {
+              button {
+                border: 1px solid var(--color-black-primary);
               }
             }
-          }
 
-          &.in-range:not(.disabled) {
-            background-color: rgba(0, 0, 0, 0.15);
-
-            &.start-day {
-              border-radius: 50% 0 0 50%;
-
+            &.selected-day:not(.disabled) {
               button {
                 background-color: var(--color-black-primary);
                 span {
@@ -179,26 +190,41 @@
               }
             }
 
-            &.end-day {
-              border-radius: 0 50% 50% 0;
+            &.in-range:not(.disabled) {
+              background-color: rgba(0, 0, 0, 0.15);
 
-              button {
-                background-color: var(--color-black-primary);
+              &.start-day {
+                border-radius: 50% 0 0 50%;
 
-                span {
-                  color: var(--color-white);
+                button {
+                  background-color: var(--color-black-primary);
+                  span {
+                    color: var(--color-white);
+                  }
+                }
+              }
+
+              &.end-day {
+                border-radius: 0 50% 50% 0;
+
+                button {
+                  background-color: var(--color-black-primary);
+
+                  span {
+                    color: var(--color-white);
+                  }
                 }
               }
             }
-          }
 
-          &.disabled {
-            button {
-              cursor: default;
-              span {
-                opacity: 0.4;
-                &[data-ripple] {
-                  display: none;
+            &.disabled {
+              button {
+                cursor: default;
+                span {
+                  opacity: 0.4;
+                  &[data-ripple] {
+                    display: none;
+                  }
                 }
               }
             }

@@ -222,8 +222,10 @@ const Calendar = ({
   useEffect(() => {
     if (!selectedDay) return;
     const date = convertDate(selectedDay);
-    setYear(date.getFullYear());
-    setMonth(date.getMonth());
+    if (!isRangePicker) {
+      setYear(date.getFullYear());
+      setMonth(date.getMonth());
+    }
     onChange && onChange(convertDate(selectedDay));
   }, [selectedDay]);
 
@@ -347,7 +349,12 @@ const Calendar = ({
       <div className="sub-head">
         <div className="buttons-container">
           <button
-            onClick={() => setTimeStamp(todayTimestamp)}
+            onClick={() => {
+              const date = convertDate(todayTimestamp);
+              setMonth(date.getMonth());
+              setYear(date.getFullYear());
+              setTimeStamp(todayTimestamp);
+            }}
             className={clsx('today-btn', todayTimestamp === selectedDay && 'selected')}
           >
             <Typography variant="span" size={12}>
@@ -359,11 +366,13 @@ const Calendar = ({
         <div className="selected-values-container">
           <When isTrue={Boolean(isRangePicker && formattedRange)}>
             <Typography variant="span" size={12}>
-              {formattedRange}&nbsp;
-              <span role="button" onClick={onClear} className="icon">
-                <CrossIcon height={12} width={12} />
+              {formattedRange}
+              <button onClick={onClear} className={clsx('clear-btn')}>
+                <Typography variant="span" size={12}>
+                  Clear
+                </Typography>
                 <Ripple />
-              </span>
+              </button>
             </Typography>
           </When>
 
@@ -379,7 +388,12 @@ const Calendar = ({
         </div>
       </div>
 
-      <div className="body">{renderCalendar(year, month)}</div>
+      <div className="calendars">
+        <div className="body">{renderCalendar(year, month)}</div>
+        <When isTrue={Boolean(isRangePicker)}>
+          <div className="body">{renderCalendar(year, month + 1)}</div>
+        </When>
+      </div>
     </div>
   );
 };

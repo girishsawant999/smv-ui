@@ -1,48 +1,17 @@
-@font-face {
-  font-family: Manrope-ExtraLight;
-  src: url('./fonts/Manrope-ExtraLight.ttf');
-}
-@font-face {
-  font-family: Manrope-Light;
-  src: url('./fonts/Manrope-Light.ttf');
-}
+import { Meta } from '@storybook/addon-docs';
 
-@font-face {
-  font-family: Manrope-Medium;
-  src: url('./fonts/Manrope-Medium.ttf');
-}
+<Meta
+  title="Docs/CSS variables"
+  parameters={{
+    viewport: {
+      defaultViewport: 'responsive',
+    },
+  }}
+/>
 
-@font-face {
-  font-family: Manrope-Regular;
-  src: url('./fonts/Manrope-Regular.ttf');
-}
+## CSS Variables
 
-@font-face {
-  font-family: Manrope-Bold;
-  src: url('./fonts/Manrope-Bold.ttf');
-}
-
-@font-face {
-  font-family: Manrope-SemiBold;
-  src: url('./fonts/Manrope-SemiBold.ttf');
-}
-
-@font-face {
-  font-family: Manrope-ExtraBold;
-  src: url('./fonts/Manrope-ExtraBold.ttf');
-}
-
-@font-face {
-  font-family: Sequel-76;
-  src: url('./fonts/Sequel100Black-76.ttf');
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+```css
 body {
   // Fonts Family
   --primary-font-light: 'Manrope-ExtraLight';
@@ -73,6 +42,19 @@ body {
   --transition-duration: 200ms;
   --transition-function: ease-in-out;
   --transition: var(--transition-duration) var(--transition-function);
-
-  // Update /stories/docs/CssVariables.stories.mdx if you add any variable
 }
+```
+
+
+### Colors
+
+
+
+- ![](https://img.shields.io/static/v1?label=&message=--color-black&color=000)
+- ![](https://img.shields.io/static/v1?label=&message=--color-white&color=fff)
+- ![](https://img.shields.io/static/v1?label=&message=--color-black-primary&color=1a181b)
+- ![](https://img.shields.io/static/v1?label=&message=--color-black-secondary&color=4e4851)
+- ![](https://img.shields.io/static/v1?label=&message=--color-black-tertiary&color=9b939f)
+- ![](https://img.shields.io/static/v1?label=&message=---color-grey-primary&color=f5f4f5)
+- ![](https://img.shields.io/static/v1?label=&message=--color-red&color=ea4848)
+- ![](https://img.shields.io/static/v1?label=&message=--ripple-effect-color&color=7f7f7f)
