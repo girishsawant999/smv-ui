@@ -14,6 +14,8 @@ const Template: ComponentStory<typeof Calendar> = (args) => (
 export const Main = Template.bind({});
 
 Main.args = {
-  onChange: (date) => console.log('date', date),
+  onChange: (date) => console.log('onChange', date),
+  onRangeChange: (range) => console.log('onRangeChange', range),
   disableDates: [new Date('2012-12-12'), new Date('1997-11-16')],
+
 };

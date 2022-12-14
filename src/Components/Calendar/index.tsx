@@ -1,6 +1,15 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Icons, VerticalSelect } from '../..';
-import { clsx, convertDate, daysMap, getDateTimeStamp, monthMap } from '../../utils';
+import { Icons, VerticalSelect, When } from '../..';
+import { CrossIcon } from '../../Icons';
+import {
+  clsx,
+  convertDate,
+  daysMap,
+  formatDate,
+  formatDateRange,
+  getDateTimeStamp,
+  monthMap
+} from '../../utils';
 import Ripple from '../Ripple';
 import Typography from '../Typography';
 import './style.scss';
@@ -27,6 +36,8 @@ export interface ICalendarProps
   defaultValue?: string | number | Date;
   value?: string | number | Date;
   onChange?: (val: Date) => void;
+  onRangeChange?: (range: Date[]) => void;
+  isRangePicker?: boolean;
 }
 
 const Calendar = ({
@@ -40,6 +51,8 @@ const Calendar = ({
   disablePastDates,
   disableFutureDates,
   disableDates,
+  isRangePicker = false,
+  onRangeChange,
   ...props
 }: ICalendarProps): JSX.Element => {
   const initial = value ? convertDate(value) : convertDate(defaultValue);
@@ -48,7 +61,7 @@ const Calendar = ({
   const [year, setYear] = useState(initial.getFullYear());
   const [month, setMonth] = useState(initial.getMonth());
   const [selectedDay, setSelectedDay] = useState<number | undefined>(undefined);
-  const [monthDetails, setMonthDetails] = useState<IDay[]>([]);
+  const [range, setRange] = useState<number[]>([]);
 
   const getDayDetails = (args: {
     index: number;
@@ -134,9 +147,44 @@ const Calendar = ({
     return true;
   };
 
+  const isInRange = (day: IDay) => {
+    if (range.length < 2) return false;
+    if (range[0] <= day.timestamp && range[1] >= day.timestamp) return true;
+    return false;
+  };
+
+  const isRangeStartDay = (day: IDay) => {
+    if (range.length < 2) return false;
+    if (range[0] === day.timestamp) return true;
+    return false;
+  };
+
+  const isRangeEndDay = (day: IDay) => {
+    if (range.length < 2) return false;
+    if (range[1] === day.timestamp) return true;
+    return false;
+  };
+
+  const setTimeStamp = (timestamp: number) => {
+    if (!isDayActive(timestamp)) return;
+
+    if (isRangePicker) {
+      if (range.length === 2) {
+        setRange([timestamp]);
+      } else if (range[0] !== timestamp) {
+        setRange([...range, timestamp].sort((a, b) => a - b));
+      }
+    }
+    setSelectedDay(timestamp);
+  };
+
+  const onClear = () => {
+    setSelectedDay(undefined);
+    setRange([]);
+  };
+
   const onDateClick = (day: IDay) => {
-    if (!isDayActive(day.timestamp)) return;
-    setSelectedDay(day.timestamp);
+    setTimeStamp(day.timestamp);
   };
 
   const changeYear = (offset: number) => {
@@ -161,13 +209,7 @@ const Calendar = ({
     const timestamp = getDateTimeStamp(date);
     if (!isDayActive(timestamp)) return;
     setSelectedDay(timestamp);
-    setYear(date.getFullYear());
-    setMonth(date.getMonth());
   }, []);
-
-  useEffect(() => {
-    setMonthDetails(getMonthDetails(year, month));
-  }, [year, month]);
 
   useEffect(() => {
     if (!value) return;
@@ -175,14 +217,20 @@ const Calendar = ({
     const timestamp = getDateTimeStamp(date);
     if (!isDayActive(timestamp)) return;
     setSelectedDay(timestamp);
-    setYear(date.getFullYear());
-    setMonth(date.getMonth());
   }, [value]);
 
   useEffect(() => {
     if (!selectedDay) return;
+    const date = convertDate(selectedDay);
+    setYear(date.getFullYear());
+    setMonth(date.getMonth());
     onChange && onChange(convertDate(selectedDay));
   }, [selectedDay]);
+
+  useEffect(() => {
+    if (!isRangePicker) return;
+    onRangeChange && onRangeChange(range.map((_) => convertDate(_)));
+  }, [range]);
 
   const YearsDropdown = () => {
     const createYearsArray = (startYear = 1970, endYear = 2099) => {
@@ -228,16 +276,20 @@ const Calendar = ({
     );
   };
 
-  const renderCalendar = () => {
+  const renderCalendar = (year: number, month: number) => {
+    const monthDetails = getMonthDetails(year, month);
     let days = monthDetails.map((day, index) => {
       return (
         <div
-          className={
-            'day-container ' +
-            (day.month !== 0 || !isDayActive(day.timestamp) ? ' disabled' : '') +
-            (isCurrentDay(day) ? ' current-day' : '') +
-            (isSelectedDay(day) ? ' selected-day' : '')
-          }
+          className={clsx(
+            'day-container',
+            (day.month !== 0 || !isDayActive(day.timestamp)) && 'disabled',
+            isCurrentDay(day) && 'current-day',
+            isSelectedDay(day) && 'selected-day',
+            isInRange(day) && 'in-range',
+            isRangeStartDay(day) && 'start-day',
+            isRangeEndDay(day) && 'end-day'
+          )}
           key={index}
         >
           <button
@@ -269,6 +321,8 @@ const Calendar = ({
     );
   };
 
+  const formattedRange = formatDateRange(range.map((_) => convertDate(_)));
+  const formattedSelected = selectedDay && formatDate(convertDate(selectedDay));
   return (
     <div className={clsx('smv-calendar', className)} {...props}>
       <div className="head">
@@ -290,7 +344,42 @@ const Calendar = ({
         </div>
       </div>
 
-      <div className="body">{renderCalendar()}</div>
+      <div className="sub-head">
+        <div className="buttons-container">
+          <button
+            onClick={() => setTimeStamp(todayTimestamp)}
+            className={clsx('today-btn', todayTimestamp === selectedDay && 'selected')}
+          >
+            <Typography variant="span" size={12}>
+              Today
+            </Typography>
+            <Ripple />
+          </button>
+        </div>
+        <div className="selected-values-container">
+          <When isTrue={Boolean(isRangePicker && formattedRange)}>
+            <Typography variant="span" size={12}>
+              {formattedRange}&nbsp;
+              <span role="button" onClick={onClear} className="icon">
+                <CrossIcon height={12} width={12} />
+                <Ripple />
+              </span>
+            </Typography>
+          </When>
+
+          <When isTrue={Boolean(!isRangePicker && formattedSelected)}>
+            <Typography variant="span" size={12}>
+              {formattedSelected}&nbsp;
+              <span role="button" onClick={onClear} className="icon">
+                <CrossIcon height={12} width={12} />
+                <Ripple />
+              </span>
+            </Typography>
+          </When>
+        </div>
+      </div>
+
+      <div className="body">{renderCalendar(year, month)}</div>
     </div>
   );
 };

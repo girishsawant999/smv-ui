@@ -38,3 +38,25 @@ export const getDateTimeStamp = (date: string | number | Date): number => {
   const _date = convertDate(date);
   return new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0).getTime();
 };
+
+export const formatDate = (
+  date: Date,
+  options: Intl.DateTimeFormatOptions = { weekday: 'short', year: '2-digit', month: 'short', day: '2-digit' }
+) => {
+  return date.toLocaleDateString(undefined, options  );
+};
+
+export const formatDateRange = (
+  range: Date[],
+  options:  Intl.DateTimeFormatOptions = { weekday: 'short', year: '2-digit', month: 'short', day: '2-digit' }
+) => {
+  if (range.length == 1) {
+    return `from ${formatDate(range[0], options)}`;
+  }
+
+  if (range.length == 2) {
+    return `${formatDate(range[0], options)}-${formatDate(range[1], options)}`;
+  }
+
+  return null;
+};
