@@ -76,3 +76,95 @@ body {
 
   // Update /stories/docs/CssVariables.stories.mdx if you add any variable
 }
+
+$colors: (
+  base: (
+    '01': #fafbfc,
+    '02': #f1f2f5,
+    '03': #e6e7ea,
+    '04': #cccfd5,
+    '05': #a5aab5,
+    '06': #6d7482,
+    '07': #353b47,
+    '08': #181d28,
+    '09': #02040a,
+  ),
+  red: (
+    '01': #ffe4e6,
+    '02': #fecdd3,
+    '03': #fda4af,
+    '04': #fb7185,
+    '05': #f43f5e,
+    '06': #e11d48,
+    '07': #be123c,
+    '08': #9f1239,
+    '09': #881337,
+  ),
+  green: (
+    '01': #d1fae5,
+    '02': #a7f3d0,
+    '03': #6ee7b7,
+    '04': #34d399,
+    '05': #10b981,
+    '06': #059669,
+    '07': #047857,
+    '08': #065f46,
+    '09': #064e3b,
+  ),
+  yellow: (
+    '01': #fef9c3,
+    '02': #fef08a,
+    '03': #fde047,
+    '04': #facc15,
+    '05': #eab308,
+    '06': #ca8a04,
+    '07': #a16207,
+    '08': #854d0e,
+    '09': #713f12,
+  ),
+  pink: (
+    '01': #fce7f3,
+    '02': #fbcfe8,
+    '03': #f9a8d4,
+    '04': #f472b6,
+    '05': #ec4899,
+    '06': #db2777,
+    '07': #be185d,
+    '08': #9d174d,
+    '09': #831843,
+  ),
+  violet: (
+    '01': #ede9fe,
+    '02': #ddd6fe,
+    '03': #c4b5fd,
+    '04': #a78bfa,
+    '05': #8b5cf6,
+    '06': #7c3aed,
+    '07': #6d28d9,
+    '08': #5b21b6,
+    '09': #4c1d95,
+  ),
+  blue: (
+    '01': #dbeafe,
+    '02': #bfdbfe,
+    '03': #93c5fd,
+    '04': #60a5fa,
+    '05': #3b82f6,
+    '06': #2563eb,
+    '07': #1d4ed8,
+    '08': #1e40af,
+    '09': #1e3a8a,
+  ),
+);
+
+@each $base, $pallet in $colors {
+  @each $variant, $value in $pallet {
+    .bg-#{'' + $base}-#{$variant} {
+      background: $value;
+    }
+
+    .color-#{'' + $base}-#{$variant} {
+      color: $value;
+    }
+  }
+}
