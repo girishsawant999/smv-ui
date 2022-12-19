@@ -91,7 +91,7 @@ const VerticalSelect = ({
         <Typography
           variant="label"
           size={open ? 18 : 16}
-          weight={open ? 'extra-bold' : 'semi-bold'}
+          weight='semi-bold'
         >
           {label}
         </Typography>
@@ -161,7 +161,7 @@ const VerticalSelect = ({
           })}
 
           {_options.length === 0 && (
-            <Typography size={14} variant="p" weight="light" className="no-result-found">
+            <Typography size={14} variant="p" weight="regular" className="no-result-found">
               No options available {searchQuery && `for "${searchQuery}"`}
             </Typography>
           )}

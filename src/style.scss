@@ -1,36 +1,4 @@
-@font-face {
-  font-family: Manrope-ExtraLight;
-  src: url('./fonts/Manrope-ExtraLight.ttf');
-}
-@font-face {
-  font-family: Manrope-Light;
-  src: url('./fonts/Manrope-Light.ttf');
-}
-
-@font-face {
-  font-family: Manrope-Medium;
-  src: url('./fonts/Manrope-Medium.ttf');
-}
-
-@font-face {
-  font-family: Manrope-Regular;
-  src: url('./fonts/Manrope-Regular.ttf');
-}
-
-@font-face {
-  font-family: Manrope-Bold;
-  src: url('./fonts/Manrope-Bold.ttf');
-}
-
-@font-face {
-  font-family: Manrope-SemiBold;
-  src: url('./fonts/Manrope-SemiBold.ttf');
-}
-
-@font-face {
-  font-family: Manrope-ExtraBold;
-  src: url('./fonts/Manrope-ExtraBold.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
 
 @font-face {
   font-family: Sequel-76;
@@ -38,13 +6,7 @@
 }
 
 body {
-  --primary-font-light: 'Manrope-ExtraLight';
-  --primary-font-extra-light: 'Manrope-ExtraLight';
-  --primary-font-medium: 'Manrope-Regular';
-  --primary-font-regular: 'Manrope-Regular';
-  --primary-font-bold: 'Manrope-Regular';
-  --primary-font-semi-bold: 'Manrope-SemiBold';
-  --primary-font-extra-bold: 'Manrope-ExtraBold';
+  --primary-font: 'Plus Jakarta Sans', sans-serif;
   --secondary-font: 'Sequel-76';
 
   --color-black: #000;

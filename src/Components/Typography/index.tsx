@@ -3,12 +3,26 @@ import { clsx } from '../../utils';
 import './style.scss';
 
 export interface ITypography
-  extends React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement> {
+  extends React.HTMLAttributes<
+    HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement
+  > {
   children: React.ReactNode;
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'code' | 'label' ;
+  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'code' | 'label';
+  textStyle?:
+    | 'regular-xs'
+    | 'regular-base'
+    | 'regular-lg'
+    | 'regular-xl'
+    | 'regular-2xl'
+    | 'semi-bold-sm'
+    | 'semi-bold-base'
+    | 'semi-bold-lg'
+    | 'semi-bold-xl'
+    | 'bold-2xl'
+    | 'none';
   font?: 'primary' | 'secondary';
-  weight?: 'light' | 'extra-light' | 'medium' | 'regular' | 'bold' | 'semi-bold' | 'extra-bold';
-  color?: 'black' | 'white' | 'primary' | 'secondary' | 'tertiary' | 'error';
+  weight?: 'regular' | 'semi-bold' | 'bold';
+  color?: string;
   size?: number;
 }
 
@@ -16,10 +30,11 @@ const Typography = ({
   children,
   variant = 'p',
   font = 'primary',
-  weight = 'regular',
-  color = 'primary',
+  weight,
+  color,
   className = '',
-  size = 16,
+  textStyle = 'regular-base',
+  size,
   ...props
 }: ITypography): JSX.Element => {
   const ref = useRef(null);
@@ -27,15 +42,16 @@ const Typography = ({
   useEffect(() => {
     if (!ref.current) return;
     const ele = ref.current as HTMLElement;
-    ele.style.setProperty('--font-size', size.toString());
-  }, [ref.current, size]);
+    size && ele.style.setProperty('--font-size', size.toString());
+    color && ele.style.setProperty('--text-color', color);
+  }, [ref.current, size, color]);
 
   const WrapperComponent = variant;
   return (
     <>
       <WrapperComponent
         ref={ref}
-        className={clsx(`font-${font} weight-${weight} color-${color}`, className)}
+        className={clsx(`font-${font}`, weight ? `weight-${weight}` : '', textStyle, className)}
         {...props}
       >
         <>{children}</>
