@@ -22,5 +22,5 @@ export { utils };
 
 
 // Extended CSS
-
+    import './extend.scss';
 

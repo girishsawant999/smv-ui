@@ -76,37 +76,31 @@ $colors: (
     '08': #1e40af,
     '09': #1e3a8a,
   ),
+);
+
+$baseColors: (
   white: #fff,
   black: #000,
 );
 
 @each $base, $pallet in $colors {
-  @if ($base == 'black') {
-    .bg-#{'' + $base} {
-      background: $pallet;
+  @each $variant, $value in $pallet {
+    .bg-#{'' + $base}-#{$variant} {
+      background: $value;
     }
 
-    .color-#{'' + $base} {
-      color: $pallet;
+    .color-#{'' + $base}-#{$variant} {
+      color: $value;
     }
   }
-  @if ($base == 'white') {
-    .bg-#{'' + $base} {
-      background: $pallet;
-    }
+}
 
-    .color-#{'' + $base} {
-      color: $pallet;
-    }
-  } @else {
-    @each $variant, $value in $pallet {
-      .bg-#{'' + $base}-#{$variant} {
-        background: $value;
-      }
+@each $base, $value in $baseColors {
+  .bg-#{'' + $base} {
+    background: $value;
+  }
 
-      .color-#{'' + $base}-#{$variant} {
-        color: $value;
-      }
-    }
+  .color-#{'' + $base} {
+    color: $value;
   }
 }
