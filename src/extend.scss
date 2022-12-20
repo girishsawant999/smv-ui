@@ -85,22 +85,22 @@ $baseColors: (
 
 @each $base, $pallet in $colors {
   @each $variant, $value in $pallet {
-    .bg-#{'' + $base}-#{$variant} {
+    .bg-#{$base}-#{$variant} {
       background: $value;
     }
 
-    .color-#{'' + $base}-#{$variant} {
+    .color-#{$base}-#{$variant} {
       color: $value;
     }
   }
 }
 
 @each $base, $value in $baseColors {
-  .bg-#{'' + $base} {
+  .bg-#{$base} {
     background: $value;
   }
 
-  .color-#{'' + $base} {
+  .color-#{$base} {
     color: $value;
   }
 }
