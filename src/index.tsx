@@ -1,6 +1,6 @@
 // Styles
+import './base.scss';
 import * as Icons from './Icons';
-import './style.scss';
 import * as utils from './utils';
 
 // Components
@@ -19,5 +19,8 @@ export { default as When } from './Components/When';
 export { Icons };
 // utilities
 export { utils };
+
+
+// Extended CSS
 
 

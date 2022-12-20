@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+@font-face {
+  font-family: Sequel-76;
+  src: url('./fonts/Sequel100Black-76.ttf');
+}
+
+body {
+  --primary-font: 'Plus Jakarta Sans', sans-serif;
+  --secondary-font: 'Sequel-76';
+
+  --color-black: #000;
+  --color-white: #fff;
+  --color-black-primary: #1a181b;
+  --color-black-secondary: #4e4851;
+  --color-black-tertiary: #9b939f;
+  --color-grey-primary: #f5f4f5;
+  --color-red: #ea4848;
+
+  --border-width: 2px;
+  --border-radius: 1.25em;
+
+  --ripple-effect-color: #7f7f7f7f;
+
+  --box-shadow-default: 0px 0px 20px rgba(0, 0, 0, 0.03), 20px 20px 40px rgba(0, 0, 0, 0.03);
+  --box-shadow-button: 0 0 0 2px #e6e4e7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

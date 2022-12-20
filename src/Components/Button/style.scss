@@ -1,77 +1,111 @@
-.smv-button {
+button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
-  padding: 1em 2em;
-  transition: transform 200ms;
-  cursor: pointer;
-  border: none;
-  border-radius: 0.25rem;
   outline: none;
-  background-color: var(--background-color);
-  color: var(--color);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-family: var(--primary-font-semi-bold);
+  border: none;
+  gap: 8px;
+  cursor: pointer;
 
-  &.full-width {
-    width: 100%;
+  &:disabled {
+    opacity: 0.3;
   }
 
-  &[data-back-button],
-  &[data-cross-button] {
-    padding: 1em;
+  & span,
+  p {
+    font-family: var(--primary-font);
+    font-weight: 600;
+    text-align: center;
   }
 
   &.primary {
-    --background-color: var(--color-black-primary);
-    --color: var(--color-white);
-    --border-color: var(--color-black-primary);
+    background: #0a010f;
+    & span,
+    p {
+      color: #ffffff;
+    }
+
+    &:hover {
+      background: #180f1c;
+    }
   }
 
   &.secondary {
-    --background-color: var(--color-white);
-    --color: var(--color-black-primary);
-    --border-color: var(--color-black-primary);
+    background: #fff;
+    border-color: #0a010f;
+    border-style: solid;
+
+    & span,
+    p {
+      color: #0a010f;
+    }
+
+    &:hover {
+      border-color: #2f2733;
+      & span,
+      p {
+        color: #2f2733;
+      }
+    }
   }
 
   &.tertiary {
-    --background-color: var(--color-grey-primary);
-    --color: var(--color-black-primary);
-  }
-
-  &.error {
-    --background-color: var(--color-red);
-    --color: var(--color-white);
-  }
-
-  &.link {
-    --background-color: none;
-    --color: var(--color-black-primary);
-    outline: none;
+    background: #fff;
     border: none;
-    padding: 4px;
-    text-decoration: underline;
+
+    & span,
+    p {
+      color: #0a010f;
+    }
+
+    &:hover {
+      & span,
+      p {
+        color: #2f2733;
+      }
+    }
   }
 
-  > span {
-    margin: 0 0.2em;
+  &.sm {
+    height: 40px;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border-width: 1px;
+
+    & span,
+    p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  &.rg {
+    height: 48px;
+    padding: 10px 24px;
+    border-radius: 20px;
+    border-width: 1.5px;
+
+    & span,
+    p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  &.lg {
+    height: 60px;
+    padding: 10px 32px;
+    border-radius: 24px;
+    border-width: 1.5px;
+
+    & span,
+    p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  & .spinner {
     display: flex;
-  }
-
-  &:disabled {
-    opacity: 0.8;
-    transform: scale(0.98);
-    cursor: not-allowed;
-  }
-
-  &:not(.link):hover {
-    transform: scale(0.98);
-    box-shadow: var(--box-shadow-button);
-  }
-
-  &:not(.link):focus {
-    box-shadow: var(--box-shadow-button);
+    justify-content: center;
+    align-items: center;
   }
 }

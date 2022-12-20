@@ -25,7 +25,8 @@ export const Back_Button = BackButtonTemplate.bind({})
 export const Cross_Button = CrossButtonTemplate.bind({})
 
 Basic.args = {
-	children: 'SMV Button',
-	buttonType: 'primary',
+	children: 'Button',
+	variant: 'primary',
+	size: 'rg',
 };
 
