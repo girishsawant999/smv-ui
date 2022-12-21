@@ -19,7 +19,8 @@ export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, I
   children: React.ReactNode;
   disabled?: boolean;
   loading?: boolean;
-  buttonType?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'link';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'none';
+  size?: 'sm' | 'rg' | 'lg';
   className?: string;
   ripple?: boolean;
   fullWidth?: boolean;
@@ -31,9 +32,10 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
     children,
     disabled,
     loading = false,
-    buttonType = 'primary',
+    variant = 'primary',
+    size = 'rg',
     className = '',
-    loader = 'circle-notch',
+    loader = 'circular-stripes',
     ripple = true,
     fullWidth = false,
     fontSize,
@@ -44,14 +46,11 @@ const Button: React.FC<IButtonProps> = function (props): JSX.Element {
   return (
     <button
       disabled={disabled || loading}
-      className={clsx('smv-button', buttonType, fullWidth ? 'full-width' : '', className)}
-      style={
-        fontSize ? ({ '--font-size': fontSize, ...style } as React.CSSProperties) : { ...style }
-      }
+      className={clsx(variant, size, fullWidth && 'full-width', className)}
       {...buttonProps}
     >
       <When isTrue={loading}>
-        <span>
+        <span className="spinner">
           <Loader loader={loader} />
         </span>
       </When>
@@ -65,16 +64,16 @@ export interface IBackButton extends Omit<IButtonProps, 'children'> {}
 
 export const BackButton = (props: IBackButton): JSX.Element => {
   return (
-    <Button data-back-button buttonType="tertiary" {...props}>
-      <Icons.LeftArrowIcon width={20} height={20}  />
+    <Button data-back-button variant="tertiary" {...props}>
+      <Icons.LeftArrowIcon />
     </Button>
   );
 };
 
 export const CrossButton = (props: IBackButton): JSX.Element => {
   return (
-    <Button data-cross-button buttonType="tertiary" {...props}>
-      <Icons.CrossIcon strokeWidth={1.5} width={20} height={20} />
+    <Button data-cross-button variant="tertiary" {...props}>
+      <Icons.CrossIcon strokeWidth={1.5} />
     </Button>
   );
 };

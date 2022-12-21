@@ -1,6 +1,6 @@
 // Styles
+import './base.scss';
 import * as Icons from './Icons';
-import './style.scss';
 import * as utils from './utils';
 
 // Components
@@ -11,6 +11,7 @@ export { default as CheckboxesList } from './Components/CheckboxesList';
 export { default as DatePicker } from './Components/DatePicker';
 export { default as Input } from './Components/Input';
 export { default as Loader } from './Components/Loader';
+export { default as Logo } from './Components/Logo';
 export { default as Overlay } from './Components/Overlay';
 export { default as Ripple } from './Components/Ripple';
 export { default as Typography } from './Components/Typography';
@@ -21,4 +22,7 @@ export { Icons };
 // utilities
 export { utils };
 
+
+// Extended CSS
+    import './extend.scss';
 
