@@ -1,4 +1,5 @@
 export { default as clsx } from './clsx';
+export { default as convertCountrySymbol } from './convertCountrySymbol';
 export { default as withSuspense } from './withSuspense';
 export const daysMap = [
   'Sunday',

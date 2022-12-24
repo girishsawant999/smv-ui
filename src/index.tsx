@@ -9,6 +9,7 @@ export { default as Calendar } from './Components/Calendar';
 export { default as Card } from './Components/Card';
 export { default as CheckboxesList } from './Components/CheckboxesList';
 export { default as DatePicker } from './Components/DatePicker';
+export { default as Flag } from './Components/Flag';
 export { default as Input } from './Components/Input';
 export { default as Loader } from './Components/Loader';
 export { default as Logo } from './Components/Logo';
