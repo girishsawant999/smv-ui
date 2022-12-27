@@ -1,42 +1,42 @@
 .overlayContainer {
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(5px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100000;
-  transform: scale(0);
-  transform-origin: var(--transform-coords);
-  transition: transform 300ms ease-in;
-  border-radius: 4rem;
+	width: 100vw;
+	height: 100vh;
+	backdrop-filter: blur(5px);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100000;
+	transform: scale(0);
+	transform-origin: var(--transform-coords);
+	transition: transform 300ms ease-in;
+	border-radius: 4rem;
 
-  & button.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
+	& button.close-button {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
 
-  &[data-theme='light'] {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  &[data-theme='dark'] {
-    background-color: rgba(0, 0, 0, 0.8);
+	&[data-theme="light"] {
+		background-color: rgba(255, 255, 255, 0.8);
+	}
+	&[data-theme="dark"] {
+		background-color: rgba(0, 0, 0, 0.8);
 
-    & button.close-button {
-      filter: invert(1);
-    }
-  }
+		& button.close-button {
+			filter: invert(1);
+		}
+	}
 
-  &[data-show='true'] {
-    transform: scale(1);
-    border-radius: 0;
-  }
+	&[data-show="true"] {
+		transform: scale(1);
+		border-radius: 0;
+	}
 
-  .overlayContent {
-    padding: 1.5rem;
-    height: calc(100vh);
-    overflow-y: auto;
-    padding-top: 70px;
-  }
+	.overlayContent {
+		padding: 1.5rem;
+		height: calc(var(--window-height) * 1px);
+		overflow-y: auto;
+		padding-top: 70px;
+	}
 }
