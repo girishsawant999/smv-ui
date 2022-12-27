@@ -14,7 +14,7 @@ export interface IOverlay {
 	};
 }
 const Overlay = ({ children, open, onClose, theme = "light", coords }: IOverlay): JSX.Element => {
-	const [innerHeight, setInnerHeight] = useState(window.innerHeight);
+	const [innerHeight, setInnerHeight] = useState<number | null>(null);
 
 	useEffect(() => {
 		if (open) {
@@ -25,6 +25,7 @@ const Overlay = ({ children, open, onClose, theme = "light", coords }: IOverlay)
 	}, [open]);
 
 	useEffect(() => {
+    if(typeof window === 'undefined') return;
 		const handleResize = () => {
 			setInnerHeight(window.innerHeight);
 		};
@@ -42,14 +43,12 @@ const Overlay = ({ children, open, onClose, theme = "light", coords }: IOverlay)
 			style={
 				{
 					"--transform-coords": coords ? `${coords.x}px ${coords.y}px` : "center",
-					"--window-height": innerHeight
+					"--window-height": innerHeight ? `${innerHeight}px` :  '100vh'
 				} as React.CSSProperties
 			}>
 			<CrossButton ripple={false} onClick={onClose} className="close-button" />
 			<div className={clsx("overlayContent")}>
-				{window.innerHeight}
 				{children}
-				{window.innerHeight}
 			</div>
 		</div>
 	);

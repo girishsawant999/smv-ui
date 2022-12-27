@@ -35,7 +35,7 @@
 
 	.overlayContent {
 		padding: 1.5rem;
-		height: calc(var(--window-height) * 1px);
+		height: calc(var(--window-height));
 		overflow-y: auto;
 		padding-top: 70px;
 	}

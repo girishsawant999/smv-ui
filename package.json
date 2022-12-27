@@ -1,6 +1,6 @@
 {
 	"name": "@stampmyvisa/design-system",
-	"version": "1.2.7",
+	"version": "1.2.9",
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
 	"files": [
