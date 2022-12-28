@@ -33,7 +33,7 @@ const Overlay = ({ children, open, onClose, theme = "light", coords }: IOverlay)
 		return () => {
 			window.removeEventListener("resize", handleResize);
 		};
-	}, []);
+	}, [window?.innerHeight]);
 
 	return (
 		<div
